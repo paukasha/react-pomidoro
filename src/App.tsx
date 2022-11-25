@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './index.css'
 import Header from "./components/Header";
 import { Container } from '@mui/material';
@@ -9,10 +9,16 @@ import Settings from './pages/Settings'
 import Statistics from './pages/Statistics'
 import Instruction from './pages/Instruction'
 import Footer from "./components/Footer/Footer";
-
+import {TasksListContext} from './context/context'
+import {ITask} from "./store";
 
 function App() {
+
+
+  const [tasksList, setTasksList] =useState<ITask[]>(JSON.parse(localStorage.getItem('tasksList')!))
+
   return (
+    <TasksListContext.Provider  value={{tasksList, setTasksList}}>
     <div className="App">
       <Header />
       <Container maxWidth='xl' sx={{flexGrow:1}}>
@@ -25,6 +31,7 @@ function App() {
       </Container>
       <Footer />
     </div>
+    </TasksListContext.Provider>
   );
 }
 

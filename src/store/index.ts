@@ -7,7 +7,7 @@ export interface ITask {
   id?: string,
   name?: string,
   descr?: string,
-  tomato?: number,
+  tomato: number,
   timers?: [
     { id: string,
       type: string,

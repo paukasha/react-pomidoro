@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -7,18 +7,16 @@ import Divider from '@mui/material/Divider';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useSelector} from "react-redux";
 import {RootState, ITask} from "../store";
+import {TasksListContext} from "../context/context";
 
 //TODO добавить возможность реактирования задачи
 const TaskList = () => {
-  // const tasksList = useSelector<RootState, ITask[]>(state => state.taskList);
-  const tasksList: ITask[] = localStorage.getItem('tasksList') ?  JSON.parse(localStorage.getItem('tasksList')!): [{name: '', descr: '', id: ''}]
-
+const {tasksList} = useContext(TasksListContext)
 
 
   return (
-    < >
-      {
-        tasksList.map((el: ITask) => {
+    <>
+      {tasksList.map((el: ITask) => {
             return (<Accordion key={el.id} sx={{width: '100%'}}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -46,7 +44,7 @@ const TaskList = () => {
         )
       }
 
-    </ >
+      </>
   );
 };
 

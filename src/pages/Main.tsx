@@ -1,30 +1,25 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useContext, useState} from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import Item from '@mui/material/Unstable_Grid2';
 import {Button, Container, TextField, Typography,} from "@mui/material";
 import TaskList from "./TaskList";
-import {useDispatch} from "react-redux";
 import CurrentTask from "../components/CurrentTask/CurrentTask";
 import {generateRandomString} from "../utils/generateRandom";
 import {ITask} from "../store";
-import dayjs from "dayjs";
+import {TasksListContext} from '../context/context';
 
 const Main = () => {
-  const dispatch = useDispatch();
+  const {tasksList} = useContext(TasksListContext);
+     let [task, setTask] = useState<ITask>({name: '', descr: '', id: '', tomato: 1}),
+    [error, setError]=useState({helperText: '', isError: false});
 
-  let [tasksList, setTasksList] = useState<ITask[]>([]),
-    [task, setTask] = useState<ITask>({name: '', descr: '', id: ''});
-
-  useEffect(() => {
-    let tasks: ITask[] = JSON.parse(localStorage.getItem('tasksList')!)
-    console.log(tasks)
-    if (tasks) {
-      setTasksList(tasks)
-    }
-  }, [])
 
   function addTask() {
-    let tasks = localStorage.getItem('tasksList')
+    if (task.name === '') {
+      setError({helperText: 'Обязательное поле', isError: true})
+      return
+    }
+
     tasksList.push({
       ...task, id: generateRandomString(), tomato: 1, timers: [{
         id: generateRandomString(),
@@ -33,32 +28,20 @@ const Main = () => {
       }]
     })
     localStorage.setItem('tasksList', JSON.stringify(tasksList))
-    setTask({name: '', descr: '', id: ''})
+    setTask({name: '', descr: '', id: '', tomato: 1})
+    setError({helperText: '', isError: false})
   }
 
   function handleTaskNameChange(event: ChangeEvent<HTMLInputElement>) {
+    if (event.target.value) {
+      setError({helperText: '', isError: false})
+    }
     setTask({...task, name: event.target.value})
   }
 
   function handleTaskDescrChange(event: ChangeEvent<HTMLInputElement>) {
     setTask({...task, descr: event.target.value})
   }
-
-
-
-
-
-
-  useEffect(() => {
-    // const timerId = setInterval(() => timer(), 1000);
-    // return () => clearInterval(timerId);
-  });
-
-
-
-
-
-
 
   return (
     <Container maxWidth='xl'
@@ -82,11 +65,11 @@ const Main = () => {
             <TextField label="Введите название задачи"
                        variant='standard'
                        fullWidth
+                       error={error.isError}
+                       helperText={error.helperText}
                        value={task.name}
                        onChange={handleTaskNameChange}
-
             />
-
           </Item >
 
           <Item xs={12} >
@@ -123,13 +106,11 @@ const Main = () => {
                         mb={4} >
               Список задач
             </Typography >
-            <TaskList />
+          <TaskList />
           </Item >
         </Grid >
       </Grid >
     </Container >
-
-
   );
 };
 

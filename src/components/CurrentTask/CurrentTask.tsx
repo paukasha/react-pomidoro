@@ -1,53 +1,91 @@
-import React, {useEffect, useState} from 'react';
+import React, {MouseEvent, SetStateAction, useContext, useEffect, useState} from 'react';
 import {blueGrey} from "@mui/material/colors";
-import {Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Typography} from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  IconButton,
+  Typography
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {DeleteForever, PlayArrow, Stop} from "@mui/icons-material";
 import PomodoroIconColor from "../icons/PomodoroIconСolor";
-import {useSelector} from "react-redux";
-import {ITask, RootState} from "../../store";
+import {ITask} from "../../store";
 import dayjs from "dayjs";
+import {TasksListContext} from "../../context/context";
 
 
 const CurrentTask = () => {
-  // let tasksList = useSelector<RootState, ITask[]>(state => state.taskList);
-  const tasksList: ITask[] = JSON.parse(localStorage.getItem('tasksList')!)
-    let currentTask = tasksList ? tasksList[0] : {name: '', descr: '', id: ''};
+  const {tasksList, setTasksList} = useContext(TasksListContext);
 
+  const [currentTask, setCurrentTask] = useState<ITask>(tasksList[0]),
+    [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  useEffect(() => {
+    setCurrentTask(tasksList[0])
+  }, [tasksList])
 
   let [hour, setHour] = useState(''),
-      [minute, setMinute] = useState(''),
-      [second, setSecond] = useState('');
+    [minute, setMinute] = useState(''),
+    [second, setSecond] = useState('');
 
 
-  let [timer, setTimer] = useState(0)
+  const [timerTime, setTimerTime] = useState<SetStateAction<any> | string | number | Date | null | undefined>(dayjs().set('hour', 0).set('minute', 5).set('second', 0)),
+    [pause, setPause] = useState(false);
 
 
-
-
-
-  let timerTime= dayjs().set('hour', 0).set('minute', 5).set('second', 0)
-
- const playTimer1 = () =>  {
-    setInterval(() => {
-      timerTime = dayjs(timerTime).subtract(1, 'second')
-      console.log(dayjs(timerTime).format('mm:ss'))
-      setMinute(dayjs(timerTime).format('mm'))
-      setSecond(dayjs(timerTime).format('ss'))
-    })
-
+  function tick() {
+    setTimerTime(dayjs(timerTime).subtract(1, 'second'))
+    setMinute(dayjs(timerTime).format('mm'))
+    setSecond(dayjs(timerTime).format('ss'))
   }
 
-
-
-  // let timer = setInterval(() => playTimer(), 1000)
-
-
-  function resetTimer() {
-    // clearInterval(playTimer)
+  function startTimer  ()  {
+    setPause(true)
   }
 
-  // const timerId = setInterval(() => timer(), 1000);
+  function stopTimer() {
+    setPause(false)
+    setTimerTime(dayjs().set('hour', 0).set('minute', Number(minute)).set('second', Number(second)))
+  }
+
+  function deleteTask(e: MouseEvent<HTMLButtonElement>) {
+    setIsModalOpen(false)
+    setTasksList(tasksList.filter((el: ITask) => el?.id! !== currentTask.id))
+    localStorage.setItem('tasksList', JSON.stringify(tasksList.filter((el: ITask) => el?.id! !== currentTask.id)))
+  }
+
+  useEffect(() => {
+    let timerId: any = 0;
+    if (pause) {
+      timerId = setInterval(() => {
+        tick()
+      }, 1000);
+    }
+
+    return function cleanup() {
+      clearInterval(timerId);
+    };
+  }, [pause, tick, timerTime])
+
+
+  function addTomato() {
+    setCurrentTask({...currentTask, tomato: currentTask?.tomato + 1})
+  }
+
+  function closeModal() {
+    setIsModalOpen(false)
+  }
+  function openModal (e: MouseEvent<HTMLButtonElement>) {
+    e.stopPropagation()
+    setIsModalOpen(true)
+  }
 
   return (
     <Box sx={{
@@ -57,74 +95,89 @@ const CurrentTask = () => {
       height: 'auto',
       maxHeight: '100%',
       borderRadius: 2,
-    }}>
+    }} >
 
 
       {tasksList ? <>
-        <Accordion>
-          <AccordionSummary    expandIcon={<ExpandMoreIcon />}>
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Accordion >
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} >
+              <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}} >
+                <Typography >
+                  {currentTask.name}
+                </Typography >
+
+                <IconButton onClick={openModal} >
+                  <DeleteForever />
+                </IconButton >
+              </Box >
+
+            </AccordionSummary >
+            <AccordionDetails >
               <Typography >
-                {currentTask.name}
-              </Typography>
-              <IconButton>
-                <DeleteForever />
-              </IconButton>
-            </Box>
+                {currentTask.descr}
+              </Typography >
+            </AccordionDetails >
+          </Accordion >
 
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography >
-              {currentTask.descr}
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+          <Box sx={{padding: 2}} >
+            <Box >
+              Осталось {currentTask.tomato}
+              <IconButton onClick={addTomato} >
+                <PomodoroIconColor />
+              </IconButton >
 
-        <Box sx={{ padding: 2}}>
-          <Box>
-            Осталось  {currentTask.tomato}
-            <IconButton>
-              <PomodoroIconColor />
-            </IconButton>
+            </Box >
 
-          </Box>
+            <Box sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }} >
 
-          <Box sx={{display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'}}>
-            <Typography variant='h1'>
-              {minute}:{second}
-            </Typography>
+              <Typography variant='h1' >
+                {minute}:{second}
+              </Typography >
 
-            {/* TODO stop если нажат плэй иначе не показываем*/}
-            <Box>
-              <IconButton size='large'
-                         onClick={resetTimer}
-              >
-                <Stop fontSize='large' />
-              </IconButton>
+              {/* TODO stop если нажат плэй иначе не показываем*/}
+              <Box >
+                <IconButton size='large'
+                            onClick={stopTimer}
+                >
+                  <Stop fontSize='large' />
+                </IconButton >
 
-              <IconButton size='large'  onClick={()=>setTimer(playTimer1)}>
-                <PlayArrow fontSize='large' />
-              </IconButton>
-
-            </Box>
-
-          </Box>
-
-        </Box>
-      </> :
+                <IconButton size='large'
+                            onClick={startTimer} >
+                  <PlayArrow fontSize='large' />
+                </IconButton >
+              </Box >
+            </Box >
+          </Box >
+        </> :
         <>
-          <div>Ничего не добавлено</div>
+          <div >Ничего не добавлено</div >
         </>
-
       }
 
+      <Dialog
+        open={isModalOpen}
+        onClose={closeModal}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" >
+          Удалить задачу?
+        </DialogTitle >
 
-
-
-
-    </Box>
+        <DialogActions >
+          <Button onClick={deleteTask}>Удалить</Button >
+          <Button onClick={closeModal}
+                  autoFocus >
+            Я передумал(а)
+          </Button >
+        </DialogActions >
+      </Dialog >
+    </Box >
   );
 };
 
