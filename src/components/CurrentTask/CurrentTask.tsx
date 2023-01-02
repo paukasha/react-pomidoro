@@ -31,32 +31,7 @@ const CurrentTask = () => {
   useEffect(() => {
     setCurrentTask(tasksList[0])
 
-    console.log(currentTask)
   }, [tasksList])
-
-  let [hour, setHour] = useState(''),
-    [minute, setMinute] = useState(''),
-    [second, setSecond] = useState('');
-
-
-  const [timerTime, setTimerTime] = useState<SetStateAction<any> | string | number | Date | null | undefined>(dayjs().set('hour', 0).set('minute', 5).set('second', 0)),
-    [pause, setPause] = useState(false);
-
-
-  function tick() {
-    setTimerTime(dayjs(timerTime).subtract(1, 'second'))
-    setMinute(dayjs(timerTime).format('mm'))
-    setSecond(dayjs(timerTime).format('ss'))
-  }
-
-  function startTimer  ()  {
-    setPause(true)
-  }
-
-  function stopTimer() {
-    setPause(false)
-    setTimerTime(dayjs().set('hour', 0).set('minute', Number(minute)).set('second', Number(second)))
-  }
 
   function deleteTask(e: MouseEvent<HTMLButtonElement>) {
     setIsModalOpen(false)
@@ -65,17 +40,16 @@ const CurrentTask = () => {
   }
 
   useEffect(() => {
-    let timerId: any = 0;
-    if (pause) {
-      timerId = setInterval(() => {
-        tick()
-      }, 1000);
-    }
 
-    return function cleanup() {
-      clearInterval(timerId);
-    };
-  }, [pause, tick, timerTime])
+  }, [])
+
+  function start (timerProps: any) {
+    timerProps.start()
+  }
+
+  function pause(timerProps: any) {
+    timerProps.pause()
+  }
 
 
   function addTomato() {
@@ -89,10 +63,6 @@ const CurrentTask = () => {
     e.stopPropagation()
     setIsModalOpen(true)
   }
-
-
-
-
 
   return (
     <Box sx={{
@@ -135,40 +105,35 @@ const CurrentTask = () => {
 
             </Box >
 
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }} >
-
               <Countdown
                   date={Date.now() + 10000}
                   autoStart={false}
-                  renderer={(props) => (
-                      <div>
+                  renderer={({formatted, api}) => (
+                      <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                      }} >
                         <Typography variant='h1' >
-                          {props.seconds}
+                          {formatted.minutes}:{formatted.seconds}
 
                         </Typography >
-                      </div>
+                        <Box >
+                          <IconButton size='large'
+                                onClick={() => pause(api)}
+                          >
+                            <Stop fontSize='large' />
+                          </IconButton >
+
+                          <IconButton size='large'
+                                      onClick={() => start(api)}
+                          >
+                            <PlayArrow fontSize='large' />
+                          </IconButton >
+                        </Box >
+                    </Box >
                   )}
               />,
-
-
-              {/* TODO stop если нажат плэй иначе не показываем*/}
-              <Box >
-                <IconButton size='large'
-
-                >
-                  <Stop fontSize='large' />
-                </IconButton >
-
-                <IconButton size='large'
-                           >
-                  <PlayArrow fontSize='large' />
-                </IconButton >
-              </Box >
-            </Box >
           </Box >
         </> :
         <>

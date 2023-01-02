@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5585e905-07eb-4ca3-bcdc-ceaeadf62c0b" name="Changes" comment="">
+    <list default="true" id="5585e905-07eb-4ca3-bcdc-ceaeadf62c0b" name="Changes" comment="промежуточный">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TaskList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TaskList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,12 +54,24 @@
       <option name="presentableId" value="Default" />
       <updated>1669113383398</updated>
       <workItem from="1669113388161" duration="36362000" />
-      <workItem from="1672639728982" duration="1214000" />
+      <workItem from="1672639728982" duration="3341000" />
     </task>
+    <task id="LOCAL-00001" summary="промежуточный">
+      <created>1672641051160</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672641051160</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="промежуточный" />
+    <option name="LAST_COMMIT_MESSAGE" value="промежуточный" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
