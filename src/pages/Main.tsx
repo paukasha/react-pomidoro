@@ -7,27 +7,47 @@ import CurrentTask from "../components/CurrentTask/CurrentTask";
 import {generateRandomString} from "../utils/generateRandom";
 import {ITask} from "../store";
 import {TasksListContext} from '../context/context';
+import useLocalStorageState from 'use-local-storage-state'
+import Countdown from "react-countdown";
 
 const Main = () => {
-  const {tasksList} = useContext(TasksListContext);
+  // const {tasksList2} = useContext(TasksListContext);
      let [task, setTask] = useState<ITask>({name: '', descr: '', id: '', tomato: 1}),
     [error, setError]=useState({helperText: '', isError: false});
 
-
+  let [tasksList, setTasksList] = useLocalStorageState<ITask[]>('tasksList', {
+    defaultValue: []
+  })
   function addTask() {
     if (task.name === '') {
       setError({helperText: 'Обязательное поле', isError: true})
       return
     }
 
-    tasksList.push({
-      ...task, id: generateRandomString(), tomato: 1, timers: [{
+
+
+
+    setTasksList([...tasksList, {
+      ...task,
+      id: generateRandomString(),
+      tomato: 1,
+      timers: [{
         id: generateRandomString(),
         type: 'task',
-        time: '05:00'
+        time: 5000
       }]
-    })
-    localStorage.setItem('tasksList', JSON.stringify(tasksList))
+    }])
+
+
+
+    // tasksList.push({
+    //   ...task, id: generateRandomString(), tomato: 1, timers: [{
+    //     id: generateRandomString(),
+    //     type: 'task',
+    //     time: '05:00'
+    //   }]
+    // })
+    // localStorage.setItem('tasksList', JSON.stringify(tasksList))
     setTask({name: '', descr: '', id: '', tomato: 1})
     setError({helperText: '', isError: false})
   }
@@ -93,8 +113,16 @@ const Main = () => {
           </Item >
 
           <Item xs={12} >
-            <CurrentTask />
+            {/*<CurrentTask />*/}
+            <Countdown date={Date.now() + 5000}
+                       autoStart={false}
+                       renderer={(props) => (
+                           <CurrentTask />
+                       )
 
+
+                       }
+            ></Countdown>
 
           </Item >
         </Grid >

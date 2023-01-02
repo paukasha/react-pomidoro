@@ -1,4 +1,4 @@
-import React, {MouseEvent, SetStateAction, useContext, useEffect, useState} from 'react';
+import React, {MouseEvent, SetStateAction, useEffect, useState} from 'react';
 import {blueGrey} from "@mui/material/colors";
 import {
   Accordion,
@@ -17,11 +17,12 @@ import {DeleteForever, PlayArrow, Stop} from "@mui/icons-material";
 import PomodoroIconColor from "../icons/PomodoroIconСolor";
 import {ITask} from "../../store";
 import dayjs from "dayjs";
-import {TasksListContext} from "../../context/context";
+import useLocalStorageState from "use-local-storage-state";
+import Countdown from "react-countdown";
 
 
 const CurrentTask = () => {
-  const {tasksList, setTasksList} = useContext(TasksListContext);
+  const [tasksList, setTasksList] = useLocalStorageState('tasksList', {defaultValue: []});
 
   const [currentTask, setCurrentTask] = useState<ITask>(tasksList[0]),
     [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,6 +30,8 @@ const CurrentTask = () => {
 
   useEffect(() => {
     setCurrentTask(tasksList[0])
+
+    console.log(currentTask)
   }, [tasksList])
 
   let [hour, setHour] = useState(''),
@@ -87,6 +90,10 @@ const CurrentTask = () => {
     setIsModalOpen(true)
   }
 
+
+
+
+
   return (
     <Box sx={{
       border: 1,
@@ -103,7 +110,7 @@ const CurrentTask = () => {
             <AccordionSummary expandIcon={<ExpandMoreIcon />} >
               <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}} >
                 <Typography >
-                  {currentTask.name}
+                  {currentTask?.name}
                 </Typography >
 
                 <IconButton onClick={openModal} >
@@ -114,14 +121,14 @@ const CurrentTask = () => {
             </AccordionSummary >
             <AccordionDetails >
               <Typography >
-                {currentTask.descr}
+                {currentTask?.descr}
               </Typography >
             </AccordionDetails >
           </Accordion >
 
           <Box sx={{padding: 2}} >
             <Box >
-              Осталось {currentTask.tomato}
+              Осталось
               <IconButton onClick={addTomato} >
                 <PomodoroIconColor />
               </IconButton >
@@ -134,20 +141,30 @@ const CurrentTask = () => {
               alignItems: 'center'
             }} >
 
-              <Typography variant='h1' >
-                {minute}:{second}
-              </Typography >
+              <Countdown
+                  date={Date.now() + 10000}
+                  autoStart={false}
+                  renderer={(props) => (
+                      <div>
+                        <Typography variant='h1' >
+                          {props.seconds}
+
+                        </Typography >
+                      </div>
+                  )}
+              />,
+
 
               {/* TODO stop если нажат плэй иначе не показываем*/}
               <Box >
                 <IconButton size='large'
-                            onClick={stopTimer}
+
                 >
                   <Stop fontSize='large' />
                 </IconButton >
 
                 <IconButton size='large'
-                            onClick={startTimer} >
+                           >
                   <PlayArrow fontSize='large' />
                 </IconButton >
               </Box >
@@ -173,7 +190,7 @@ const CurrentTask = () => {
           <Button onClick={deleteTask}>Удалить</Button >
           <Button onClick={closeModal}
                   autoFocus >
-            Я передумал(а)
+            Отмена
           </Button >
         </DialogActions >
       </Dialog >

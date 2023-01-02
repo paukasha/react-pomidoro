@@ -11,7 +11,7 @@ export interface ITask {
   timers?: [
     { id: string,
       type: string,
-      time: string,
+      time: string | number,
       creationDate?: string
     }
   ]

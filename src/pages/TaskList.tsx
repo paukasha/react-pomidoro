@@ -8,10 +8,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useSelector} from "react-redux";
 import {RootState, ITask} from "../store";
 import {TasksListContext} from "../context/context";
+import useLocalStorageState from "use-local-storage-state";
 
 //TODO добавить возможность реактирования задачи
 const TaskList = () => {
-const {tasksList} = useContext(TasksListContext)
+// const {tasksList} = useContext(TasksListContext)
+
+    const [tasksList, setTasksList] = useLocalStorageState('tasksList', {defaultValue : []})
 
 
   return (

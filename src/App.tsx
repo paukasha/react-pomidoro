@@ -18,7 +18,7 @@ function App() {
   const [tasksList, setTasksList] =useState<ITask[]>(JSON.parse(localStorage.getItem('tasksList')!))
 
   return (
-    <TasksListContext.Provider  value={{tasksList, setTasksList}}>
+    // <TasksListContext.Provider  value={{tasksList, setTasksList}}>
     <div className="App">
       <Header />
       <Container maxWidth='xl' sx={{flexGrow:1}}>
@@ -31,7 +31,7 @@ function App() {
       </Container>
       <Footer />
     </div>
-    </TasksListContext.Provider>
+    // {/*</TasksListContext.Provider>*/}
   );
 }
 
