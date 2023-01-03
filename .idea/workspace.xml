@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5585e905-07eb-4ca3-bcdc-ceaeadf62c0b" name="Changes" comment="промежуточный">
+    <list default="true" id="5585e905-07eb-4ca3-bcdc-ceaeadf62c0b" name="Changes" comment="текущий таймер">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Settings.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +42,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "ts.external.directory.path": "C:\\Users\\Дарья\\Desktop\\react-pomidoro\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -54,7 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669113383398</updated>
       <workItem from="1669113388161" duration="36362000" />
-      <workItem from="1672639728982" duration="3341000" />
+      <workItem from="1672639728982" duration="18594000" />
     </task>
     <task id="LOCAL-00001" summary="промежуточный">
       <created>1672641051160</created>
@@ -63,7 +65,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672641051160</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="текущий таймер">
+      <created>1672643505048</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672643505048</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -71,7 +80,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="промежуточный" />
-    <option name="LAST_COMMIT_MESSAGE" value="промежуточный" />
+    <MESSAGE value="текущий таймер" />
+    <option name="LAST_COMMIT_MESSAGE" value="текущий таймер" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -83,5 +93,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

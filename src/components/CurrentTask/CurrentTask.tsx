@@ -74,9 +74,8 @@ const CurrentTask = () => {
       borderRadius: 2,
     }} >
 
-
       {tasksList ? <>
-          <Accordion >
+          <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} >
               <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}} >
                 <Typography >
@@ -102,7 +101,6 @@ const CurrentTask = () => {
               <IconButton onClick={addTomato} >
                 <PomodoroIconColor />
               </IconButton >
-
             </Box >
 
               <Countdown
