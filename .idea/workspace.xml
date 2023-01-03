@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5585e905-07eb-4ca3-bcdc-ceaeadf62c0b" name="Changes" comment="текущий таймер">
+    <list default="true" id="5585e905-07eb-4ca3-bcdc-ceaeadf62c0b" name="Changes" comment="Доработано:&#10; стр-ца настройки&#10; &#10; Добавлено: snackBar после сохранения настройки">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Settings.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1669113383398</updated>
       <workItem from="1669113388161" duration="36362000" />
-      <workItem from="1672639728982" duration="18594000" />
+      <workItem from="1672639728982" duration="20681000" />
     </task>
     <task id="LOCAL-00001" summary="промежуточный">
       <created>1672641051160</created>
@@ -72,7 +72,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672643505048</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Доработано:&#10; стр-ца настройки&#10; &#10; Добавлено: snackBar после сохранения настройки">
+      <created>1672721553239</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672721553239</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -81,7 +88,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="промежуточный" />
     <MESSAGE value="текущий таймер" />
-    <option name="LAST_COMMIT_MESSAGE" value="текущий таймер" />
+    <MESSAGE value="Доработано:&#10; стр-ца настройки&#10; &#10; Добавлено: snackBar после сохранения настройки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Доработано:&#10; стр-ца настройки&#10; &#10; Добавлено: snackBar после сохранения настройки" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
