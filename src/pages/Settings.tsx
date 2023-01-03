@@ -49,22 +49,31 @@ const Settings = () => {
             return
         }
 
-        const newTimer = window.setTimeout(() => {
-            let newSettings = settings.map(el => {
-                if (el.sysName === sysName) {
-                    return {
-                        ...el,
-                        value: value,
-                        error: false
-                    }
+        let newSettings = settings.map(el => {
+            if (el.sysName === sysName) {
+                return {
+                    ...el,
+                    value: value,
+                    error: false
                 }
-                return el
-            })
-            setSettings([...newSettings])
-            setSnackBarOpen(true)
-        }, 1500)
+            }
+            return el
+        })
 
-        setTimer(newTimer)
+
+        if (typeof value !== 'boolean') {
+            const newTimer = window.setTimeout(() => {
+
+                setSettings([...newSettings])
+                setSnackBarOpen(true)
+            }, 1500)
+
+            setTimer(newTimer)
+            return
+        }
+        setSnackBarOpen(true)
+        setSettings([...newSettings])
+
     }
 
     const handleClose = () => {
@@ -95,7 +104,7 @@ const Settings = () => {
                     } else {
                         return (
                             <FormGroup key={el.sysName}>
-                                <FormControlLabel control={<Checkbox defaultChecked={el.value}
+                                <FormControlLabel control={<Checkbox checked={el.value}
                                                                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.checked, el.sysName)}
                                                                      size="medium"/>}
                                                   label={el.text}/>
