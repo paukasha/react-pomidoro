@@ -5,16 +5,25 @@ import { Reducer } from 'redux';
 
 export interface ITask {
   id?: string,
-  name?: string,
+  name: string,
   descr?: string,
-  tomato: number,
-  timers?: [
-    { id: string,
-      type: string,
-      time: string | number,
-      creationDate?: string
-    }
-  ]
+  tomatos?: any,
+  timers: ITimer[],
+  completed?: boolean
+}
+
+export interface ITimer extends ISetting  {
+  id?: string,
+  creation_date: string
+}
+
+
+
+export interface ISetting {
+  sysName: string,
+  text: string,
+  value: number | boolean,
+  error: boolean
 }
 
 export type RootState = {

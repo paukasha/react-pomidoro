@@ -14,12 +14,12 @@ import useLocalStorageState from "use-local-storage-state";
 const TaskList = () => {
 // const {tasksList} = useContext(TasksListContext)
 
-    const [tasksList, setTasksList] = useLocalStorageState('tasksList', {defaultValue : []})
+    const [tasksList, setTasksList] = useLocalStorageState<ITask[]>('tasksList', {defaultValue : []})
 
 
   return (
     <>
-      {tasksList.map((el: ITask) => {
+      {tasksList.length ? tasksList.filter(el => !el.completed).map((el: ITask) => {
             return (<Accordion key={el.id} sx={{width: '100%'}}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -44,7 +44,7 @@ const TaskList = () => {
 
             </Accordion >)
           }
-        )
+        ) : <h1>пусто</h1>
       }
 
       </>
