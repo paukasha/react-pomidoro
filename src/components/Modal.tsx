@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import ReactDOM from "react-dom";
 import {
     Box,
@@ -19,15 +19,27 @@ interface IModalProps {
 
 }
 
-const Modal = (props: IModalProps) => {
+const Modal = () => {
     const [radioValue, setRadioValue] = useState('completed');
+
+
+
     const node = document.querySelector('#modal__root');
     if (!node) return null;
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRadioValue((event.target as HTMLInputElement).value);
     };
 
-    const { closeModal, execute} = props
+    // const { closeModal, execute} = props
+
+    function closeModal () {
+        console.log('close')
+    }
+
+    function execute () {
+        console.log('execute')
+    }
+
 
     return  ReactDOM.createPortal((
         <Dialog

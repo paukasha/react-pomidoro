@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Alert,
     Box,
@@ -10,30 +10,19 @@ import {
     Typography
 } from "@mui/material";
 import useLocalStorageState from "use-local-storage-state";
+import {SettingsContext} from "../context/context";
 
 const Settings = () => {
-    const [settings, setSettings] = useLocalStorageState('settings', {
-        defaultValue: [
-            {sysName: 'tomatos', text: 'Макс. кол-во помидоров в одной задаче', value: 4, error: false},
-            {sysName: 'tomatoDuration', text: 'Продолжительность помидора, минуты', value: 5, error: false},
-            {
-                sysName: 'smallBreakDuration',
-                text: 'Продолжительность короткого перерыва, минуты',
-                value: 2,
-                error: false
-            },
-            {sysName: 'bigBreakDuration', text: 'Продолжительность длинного перерыва, минуты', value: 3, error: false},
-            {sysName: 'notifs', text: 'Включить уведомления', value: true, error: false},
-            {sysName: 'audio', text: 'Включить звук', value: false, error: false},
-        ]
-    })
+    const {settings, setSettings} = useContext(SettingsContext)
+
+    console.log(settings)
 
     const [isSnackBarOpen, setSnackBarOpen] = React.useState(false);
 
     const [timer, setTimer] = useState<number | null>(null)
 
     const handleChange = (value: number | boolean, sysName: string | boolean) => {
-        window.clearTimeout(timer as any)
+        // window.clearTimeout(timer as any)
 
         if (!value && typeof value !== 'boolean') {
             let newSettings = settings.map(el => {

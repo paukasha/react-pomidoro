@@ -1,4 +1,4 @@
-import React, {MouseEvent, useEffect, useRef, useState} from 'react';
+import React, {createContext, MouseEvent, useContext, useEffect, useRef, useState} from 'react';
 import {blueGrey} from "@mui/material/colors";
 import {
     Accordion,
@@ -23,15 +23,16 @@ import sound from './sound2.mp3'
 import UseSound from "../../hooks/UseSound";
 
 import Modal from "../Modal";
+import {ModalContext, TasksContext} from "../../context/context";
 
 const CurrentTask = () => {
-    const [tasksList, setTasksList] = useLocalStorageState<ITask[]>('tasksList');
     const [currentTask, setCurrentTask] = useState<ITask | null>(null),
-        [isModalOpen, setIsModalOpen] = useState(false),
         [timers, setTimers] = useState<ITimer[]>([]),
         [currentTimer, setCurrentTimer] = useState<ITimer | any>(null);
 
-    const component = React.useMemo( () => <Countdown/>, [] );
+
+    const {isModalOpen, setIsModalOpen} = useContext(ModalContext);
+    const {tasksList, setTasksList} = useContext(TasksContext);
 
     // const [radioValue, setRadioValue] = React.useState('completed');
     //
@@ -278,10 +279,10 @@ const CurrentTask = () => {
                     <div>Ничего не добавлено</div>
                 </>
             }
-            {isModalOpen && <Modal closeModal={closeModal}
+            {/*{isModalOpen && <Modal closeModal={closeModal}*/}
 
-                                   execute={execute}
-                                 />}
+            {/*                       execute={execute}*/}
+            {/*                     />}*/}
         </Box>
     );
 };
