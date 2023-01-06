@@ -8,55 +8,60 @@ import {
     Button,
     Dialog,
     DialogActions,
-    DialogTitle,
-    IconButton,
+    DialogTitle, FormControl, FormControlLabel, FormLabel,
+    IconButton, Radio, RadioGroup,
     Typography
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {DeleteForever, PlayArrow, Stop} from "@mui/icons-material";
+import {DeleteForever, PlayArrow, Stop, Pause} from "@mui/icons-material";
 import PomodoroIconColor from "../icons/PomodoroIconСolor";
 import {ITask, ITimer} from "../../store";
 import useLocalStorageState from "use-local-storage-state";
 import Countdown, {CountdownApi} from "react-countdown";
 
-// import audio from './sound2.mp3'
-
 import sound from './sound2.mp3'
+import UseSound from "../../hooks/UseSound";
+
+import Modal from "../Modal";
 
 const CurrentTask = () => {
     const [tasksList, setTasksList] = useLocalStorageState<ITask[]>('tasksList');
-
-    // const [playing, toggle] = useAudio( 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
-
-    const [audio] = useState(new Audio(sound));
-    // audio.load()
-    const [playing, setPlaying] = useState(false);
-
-    const toggle = () => {
-        console.log(';l')
-        setPlaying(!playing)
-    };
-
-    useEffect(() => {
-            playing ? audio.play(): audio.pause();
-        },
-        [playing]
-    );
-
-    useEffect(() => {
-        audio.addEventListener('ended', () => setPlaying(false));
-        return () => {
-            audio.removeEventListener('ended', () => setPlaying(false));
-        };
-    }, []);
-
-
     const [currentTask, setCurrentTask] = useState<ITask | null>(null),
         [isModalOpen, setIsModalOpen] = useState(false),
         [timers, setTimers] = useState<ITimer[]>([]),
         [currentTimer, setCurrentTimer] = useState<ITimer | any>(null);
 
+    const component = React.useMemo( () => <Countdown/>, [] );
+
+    // const [radioValue, setRadioValue] = React.useState('completed');
+    //
+    // const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setRadioValue((event.target as HTMLInputElement).value);
+    // };
+
+    const [toggle] = UseSound(sound)
+
     let countdownApi: CountdownApi | null = null;
+
+    useEffect(() => {
+        console.log('use1')
+        if (tasksList?.length) {
+            setCurrentTask(tasksList[0])
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log('use2')
+        let localCurrentTimer = {...tasksList![0].timers[0]!}
+        setCurrentTimer({...localCurrentTimer})
+
+    }, [])
+
+    useEffect(() => {
+        console.log('use13')
+        let localTimers = [...tasksList![0].timers]
+        setTimers(localTimers)
+    }, [tasksList])
 
     let countdownRef = useRef((countdown: Countdown | null): void => {
         if (countdown) {
@@ -64,35 +69,25 @@ const CurrentTask = () => {
         }
     }) as any
 
-    useEffect(() => {
-        if (tasksList?.length) {
-            setCurrentTask(tasksList[0])
+
+    function toggleTimer() {
+        if (countdownRef?.current?.isStopped()) {
+            setCurrentTimer({...currentTimer, date_start: Date.now()})
+            countdownRef?.current?.start()
         }
-    }, [])
-
-    useEffect(() => {
-        let localTimers = [...tasksList![0].timers]
-        setTimers(localTimers)
-
-        let localCurrentTimer = {...tasksList![0].timers[0]!,}
-        setCurrentTimer({...localCurrentTimer})
-
-    }, [currentTask, tasksList])
-
-    function deleteTask(e: MouseEvent<HTMLButtonElement>) {
-        setIsModalOpen(false)
-        setTasksList(tasksList!.filter((el: ITask) => el?.id! !== currentTask!.id))
-        localStorage.setItem('tasksList', JSON.stringify(tasksList!.filter((el: ITask) => el?.id! !== currentTask!.id)))
+        if (countdownRef?.current?.isStarted()) {
+            countdownRef?.current?.pause()
+        }
+        if (countdownRef?.current?.isPaused()){
+            countdownRef?.current?.start()
+        }
     }
 
-    function start() {
-        countdownRef?.current?.start()
+     function stopTimer(e: React.MouseEvent<HTMLButtonElement>) {
+            countdownRef?.current?.stop()
 
-        setCurrentTimer({...currentTimer, date_start: Date.now()})
-    }
-
-    function pause(timerProps: any) {
-        timerProps.pause()
+         console.log('true')
+         setIsModalOpen(true)
     }
 
     function addTomato() {
@@ -103,29 +98,42 @@ const CurrentTask = () => {
         setIsModalOpen(false)
     }
 
-    function openModal(e: MouseEvent<HTMLButtonElement>) {
-        e.stopPropagation()
-        setIsModalOpen(true)
+     function openModal(e: MouseEvent<HTMLButtonElement>) {
+
+         setIsModalOpen(true)
+    }
+
+     function execute () {
+         setIsModalOpen(false)
+        // if (radioValue === 'completed') {
+        // //     найти следующую задачу установить текущую как вполненная
+        //     console.log('completed')
+        //     return
+        // }
+
+        // countdownRef?.current?.stop()
+    //     начинаме задачу занового => останавливаем таймер
     }
 
 
-    function goToNextTask() {
+    function goToNextTimer() {
         let currentTimerIdx = timers.findIndex(el => el.id === currentTimer?.id)
         let nextTimer = timers.find((el, idx) => idx === Number(currentTimerIdx) + 1) as ITimer
+
 
         let tasks = tasksList?.map((el, idx) => {
             if (el.id === currentTask?.id) {
                 return {
                     ...el,
-                    timers: el.timers.map(timer => {
-                        if (timer.id === currentTimer.id) {
+                    timers: el.timers.map((timer, idx) => {
+                        if (idx === currentTimerIdx) {
                             return {
                                 ...timer,
                                 date_end: Date.now()
                             }
                         }
 
-                        if (timer.id === nextTimer.id) {
+                        if (nextTimer && timer.id === nextTimer.id) {
                             return {
                                 ...timer,
                                 date_start: Date.now()
@@ -139,14 +147,13 @@ const CurrentTask = () => {
 
             return el
 
-
         }) as ITask[]
 
-        setTasksList(tasks)
-
         if (!nextTimer) {
-            countdownRef?.current?.stop()
+
+            toggle()
             let currentTaskIdx = tasksList?.findIndex(el => el.id === currentTask?.id)!
+
             console.log('idx текущей задачи', currentTaskIdx)
 
             let tasks = tasksList?.map(el => {
@@ -157,9 +164,17 @@ const CurrentTask = () => {
                         date_end: Date.now()
                     }
                 }
+                return el
             })
             let nextTask = tasksList?.find((el, idx) => idx === currentTaskIdx + 1) as ITask
-            setCurrentTask(nextTask)
+
+            if (nextTask) {
+                countdownRef?.current?.stop()
+                setCurrentTask(nextTask)
+                setTasksList(tasks)
+            } else {
+
+            }
             return
         }
 
@@ -167,20 +182,28 @@ const CurrentTask = () => {
         let tim = 0
         window.clearTimeout(tim)
         tim = window.setTimeout(() => {
+            let tim2 = 0
+            tim2 = window.setTimeout(() => {
+
+                // setTasksList(tasks)
+
+                window.clearTimeout(tim2)
+
+            },0)
+
+
             setCurrentTimer({...nextTimer, date_start: Date.now()})
-            // window.setTimeout(() => {
-                countdownRef?.current?.start()
 
-                // window.clearTimeout(tim)
-
-            // },1000)
+            countdownRef?.current?.start()
 
             window.clearTimeout(tim)
 
         },1000)
+    }
 
-
-        //
+    function show() {
+        console.log(';ontick')
+        setIsModalOpen(true)
     }
 
     return (
@@ -193,9 +216,6 @@ const CurrentTask = () => {
             borderRadius: 2,
         }}>
 
-
-            <button onClick={toggle}>play</button>
-
             {tasksList ? <>
                     <Accordion>
                         <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
@@ -203,10 +223,6 @@ const CurrentTask = () => {
                                 <Typography>
                                     {currentTask?.name}
                                 </Typography>
-
-                                <IconButton onClick={openModal}>
-                                    <DeleteForever/>
-                                </IconButton>
                             </Box>
 
                         </AccordionSummary>
@@ -228,8 +244,10 @@ const CurrentTask = () => {
                         {currentTimer && <Countdown
                             date={Date.now() + Number(currentTimer.value) * 1000}
                             autoStart={false}
+
+                            onStop={() => show()}
                             ref={countdownRef}
-                            onComplete={goToNextTask}
+                            onComplete={goToNextTimer}
                             renderer={({formatted, api}) => (<Box sx={{
                                     display: 'flex',
                                     justifyContent: 'space-between',
@@ -241,15 +259,15 @@ const CurrentTask = () => {
                                     </Typography>
                                     <Box>
                                         <IconButton size='large'
-                                                    onClick={() => pause(api)}
+                                                    onClick={(e) => stopTimer(e)}
                                         >
                                             <Stop fontSize='large'/>
                                         </IconButton>
 
                                         <IconButton size='large'
-                                                    onClick={() => start()}
+                                                    onClick={() => toggleTimer()}
                                         >
-                                            <PlayArrow fontSize='large'/>
+                                            {api.isStopped() || api.isPaused() ? <PlayArrow fontSize='large'/> :  <Pause fontSize='large'/>}
                                         </IconButton>
                                     </Box>
                                 </Box>
@@ -260,25 +278,10 @@ const CurrentTask = () => {
                     <div>Ничего не добавлено</div>
                 </>
             }
+            {isModalOpen && <Modal closeModal={closeModal}
 
-            <Dialog
-                open={isModalOpen}
-                onClose={closeModal}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">
-                    Удалить задачу?
-                </DialogTitle>
-
-                <DialogActions>
-                    <Button onClick={deleteTask}>Удалить</Button>
-                    <Button onClick={closeModal}
-                            autoFocus>
-                        Отмена
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                                   execute={execute}
+                                 />}
         </Box>
     );
 };

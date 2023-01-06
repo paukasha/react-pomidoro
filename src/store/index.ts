@@ -14,7 +14,8 @@ export interface ITask {
 
 export interface ITimer extends ISetting  {
   id?: string,
-  creation_date: string
+  creation_date: string,
+  date_start: string | number
 }
 
 
