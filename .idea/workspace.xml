@@ -6,13 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="5585e905-07eb-4ca3-bcdc-ceaeadf62c0b" name="Changes" comment="промежуточный">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/context.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/context.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/context.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Settings.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/TaskList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TaskList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +45,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Дарья/Desktop/react-pomidoro/src/components/CurrentTask",
+    "last_opened_file_path": "C:/Users/Дарья/Desktop/js-course-work-done",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,6 +60,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Дарья\Desktop\react-pomidoro\src\components\CurrentTask" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Дарья\Desktop\react-pomidoro\src" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -67,7 +74,7 @@
       <updated>1669113383398</updated>
       <workItem from="1669113388161" duration="36362000" />
       <workItem from="1672639728982" duration="72378000" />
-      <workItem from="1672970912425" duration="30920000" />
+      <workItem from="1672970912425" duration="57263000" />
     </task>
     <task id="LOCAL-00001" summary="промежуточный">
       <created>1672641051160</created>
@@ -118,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672992793566</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="промежуточный">
+      <created>1673010457755</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673010457755</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

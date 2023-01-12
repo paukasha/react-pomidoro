@@ -9,21 +9,14 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import useLocalStorageState from "use-local-storage-state";
 import {SettingsContext} from "../context/context";
 
 const Settings = () => {
-    const {settings, setSettings} = useContext(SettingsContext)
-
-    console.log(settings)
-
+    const {settings, setSettings} = useContext(SettingsContext);
     const [isSnackBarOpen, setSnackBarOpen] = React.useState(false);
-
-    const [timer, setTimer] = useState<number | null>(null)
+    const [timer, setTimer] = useState<number | null>(null);
 
     const handleChange = (value: number | boolean, sysName: string | boolean) => {
-        // window.clearTimeout(timer as any)
-
         if (!value && typeof value !== 'boolean') {
             let newSettings = settings.map(el => {
                 if (el.sysName === sysName) {
@@ -52,7 +45,6 @@ const Settings = () => {
 
         if (typeof value !== 'boolean') {
             const newTimer = window.setTimeout(() => {
-
                 setSettings([...newSettings])
                 setSnackBarOpen(true)
             }, 1500)
@@ -62,13 +54,11 @@ const Settings = () => {
         }
         setSnackBarOpen(true)
         setSettings([...newSettings])
-
     }
 
     const handleClose = () => {
         setSnackBarOpen(false)
     };
-
 
     return (<Box sx={{mt: 2, display: 'grid', rowGap: 4, maxWidth: '50%'}}>
             <Typography variant='h3'>

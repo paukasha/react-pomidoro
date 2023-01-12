@@ -11,6 +11,7 @@ import {
     Radio,
     RadioGroup
 } from "@mui/material";
+import {ModalContext} from "../context/context";
 
 interface IModalProps {
     // isModalOpen: boolean;
@@ -21,27 +22,26 @@ interface IModalProps {
 
 const Modal = () => {
     const [radioValue, setRadioValue] = useState('completed');
-
-
-
+    const {isModalOpen, setIsModalOpen} = useContext(ModalContext);
     const node = document.querySelector('#modal__root');
     if (!node) return null;
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRadioValue((event.target as HTMLInputElement).value);
     };
 
+
     // const { closeModal, execute} = props
 
-    function closeModal () {
-        console.log('close')
+    function closeModal() {
+        setIsModalOpen(false)
     }
 
-    function execute () {
+    function execute() {
         console.log('execute')
     }
 
 
-    return  ReactDOM.createPortal((
+    return ReactDOM.createPortal((
         <Dialog
             open={true}
             onClose={closeModal}
@@ -52,7 +52,7 @@ const Modal = () => {
                 Какое действие выполнить?
             </DialogTitle>
 
-            <DialogActions sx={{flexDirection: 'column', justifyContent: 'flex-end', }}>
+            <DialogActions sx={{flexDirection: 'column', justifyContent: 'flex-end',}}>
                 <FormControl sx={{mb: 2}}>
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
@@ -60,8 +60,9 @@ const Modal = () => {
                         onChange={handleRadioChange}
                         name="radio-buttons-group"
                     >
-                        <FormControlLabel value="completed" control={<Radio />} label="Задача завершена, перейти к следующей" />
-                        <FormControlLabel value="restart" control={<Radio />} label="Начать задачу заново" />
+                        <FormControlLabel value="completed" control={<Radio/>}
+                                          label="Задача завершена, перейти к следующей"/>
+                        <FormControlLabel value="restart" control={<Radio/>} label="Начать задачу заново"/>
                     </RadioGroup>
                 </FormControl>
 

@@ -1,5 +1,5 @@
 import React, {createContext} from "react";
-import {ISetting, ITask} from "../store";
+import {ISetting, ITask} from "../interfaces";
 
 
 interface IModalContext {

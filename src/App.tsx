@@ -9,10 +9,11 @@ import Settings from './pages/Settings'
 import Statistics from './pages/Statistics'
 import Instruction from './pages/Instruction'
 import Footer from "./components/Footer/Footer";
-import {ISetting, ITask} from "./store";
+import {ISetting, ITask} from "./interfaces";
 import useLocalStorageState from "use-local-storage-state";
 import {settingsDefaultValue} from "./utils/dicts";
 import {ModalContext, TasksContext, SettingsContext} from "./context/context";
+import Modal from "./components/Modal";
 
 function App() {
     const [tasksList, setTasksList] = useLocalStorageState<ITask[]>('tasksList', {defaultValue: []}),
@@ -37,6 +38,7 @@ function App() {
                             </Routes>
                         </Container>
                         <Footer/>
+                        {isModalOpen && <Modal/>}
                     </div>
                 </SettingsContext.Provider>
             </TasksContext.Provider>

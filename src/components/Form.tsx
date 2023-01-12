@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useContext, useEffect, useRef, useState} from 'react';
 import {Box, Button, TextField, Typography} from "@mui/material";
-import {ISetting, ITask} from "../store";
+import {ISetting, ITask} from "../interfaces";
 import {generateRandomString} from "../utils/generateRandom";
 import useLocalStorageState from "use-local-storage-state";
 import {TasksContext} from "../context/context";
@@ -132,6 +132,7 @@ const Form = () => {
 
             <Button variant='contained'
                     onClick={addTask}
+                    sx={{justifySelf: 'start'}}
             >
                 <Typography>
                     Добавить
