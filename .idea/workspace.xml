@@ -10,13 +10,9 @@
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Timer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Timer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/context.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/context.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Settings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TaskList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TaskList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +41,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Дарья/Desktop/js-course-work-done",
+    "full.screen.before.presentation.mode": "false",
+    "last_opened_file_path": "C:/Users/Дарья/Desktop/react-pomidoro",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,6 +50,7 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.keymap",
     "ts.external.directory.path": "C:\\Users\\Дарья\\Desktop\\react-pomidoro\\node_modules\\typescript\\lib",
+    "typescript.add.unambiguous.imports.on.the.fly": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -74,7 +72,8 @@
       <updated>1669113383398</updated>
       <workItem from="1669113388161" duration="36362000" />
       <workItem from="1672639728982" duration="72378000" />
-      <workItem from="1672970912425" duration="57263000" />
+      <workItem from="1672970912425" duration="69978000" />
+      <workItem from="1673673526893" duration="45227000" />
     </task>
     <task id="LOCAL-00001" summary="промежуточный">
       <created>1672641051160</created>
@@ -132,11 +131,29 @@
       <option name="project" value="LOCAL" />
       <updated>1673010457755</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="промежуточный">
+      <created>1673521500552</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673521500552</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="текущий таймер" />

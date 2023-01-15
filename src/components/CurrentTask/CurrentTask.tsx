@@ -11,105 +11,41 @@ import sound from './sound2.mp3'
 import UseSound from "../../hooks/UseSound";
 import {ModalContext, TasksContext} from "../../context/context";
 import Timer from "../Timer";
+import taskList from "../../pages/TaskList";
 
 const date = Date.now()
 
-const CurrentTask = React.memo(() => {
+const CurrentTask = () => {
     const [currentTask, setCurrentTask] = useState<ITask | null>(null),
         [timers, setTimers] = useState<ITimer[]>([]),
-        [currentTimer, setCurrentTimer] = useState<ITimer | any>(null);
+        [currentTimer, setCurrentTimer] = useState<ITimer | null>(null);
 
-
-
-    const {isModalOpen, setIsModalOpen} = useContext(ModalContext);
     const {tasksList, setTasksList} = useContext(TasksContext);
 
     const [toggle] = UseSound(sound)
 
-    let countdownApi: CountdownApi | null = null;
-
-
-
     useEffect(() => {
-        console.log('use1')
+        setTasksList(tasksList.filter(el => !el.completed))
         if (tasksList?.length) {
             setCurrentTask(tasksList[0])
+            console.log(currentTask)
         }
-    }, [])
+    }, [tasksList])
+
 
     useEffect(() => {
-        console.log(currentTimer)
-    }, [currentTimer])
-
-    useEffect(() => {
-        console.log('use2')
         let localCurrentTimer = {...currentTask?.timers[0]}
         if (localCurrentTimer) {
-            setCurrentTimer({...localCurrentTimer, value: localCurrentTimer?.value && Number(localCurrentTimer?.value) * 1000})
+            // setCurrentTimer({...localCurrentTimer, value: localCurrentTimer?.value && Number(localCurrentTimer?.value) * 1000})
         }
-
-
-
     }, [currentTask,])
 
     useEffect(() => {
-        console.log('use13')
         let localTimers = [...tasksList[0].timers]
         setTimers(localTimers)
     }, [])
 
-    let countdownRef = useRef((countdown: Countdown | null): void => {
-        if (countdown) {
-            countdownApi = countdown.getApi();
-        }
-    }) as any
-    let [paused, setPaused] = useState(null)
-
-
-    function toggleTimer() {
-        // if (countdownRef?.current?.isStopped()) {
-        //     // setCurrentTimer({...currentTimer, date_start: Date.now()})
-            countdownRef?.current?.start()
-        // }
-        // if (countdownRef?.current?.isStarted()) {
-        //     countdownRef?.current?.pause()
-        // }
-        // if (countdownRef?.current?.isPaused()) {
-        //     countdownRef?.current?.start()
-        // }
-    }
-    const [asd, setAsd] = useState(false)
-    function stopTimer(e: React.MouseEvent<HTMLButtonElement>) {
-       countdownRef?.current?.stop()
-
-        console.log('true')
-         setIsModalOpen(true)
-
-        setAsd(!asd)
-    }
-
-    function addTomato() {
-        // setCurrentTask({...currentTask, })
-    }
-
-    function execute() {
-        setIsModalOpen(false)
-        // if (radioValue === 'completed') {
-        // //     найти следующую задачу установить текущую как вполненная
-        //     console.log('completed')
-        //     return
-        // }
-
-        // countdownRef?.current?.stop()
-        //     начинаме задачу занового => останавливаем таймер
-    }
-
-
-    function goToNextTimer(timeDelta:  CountdownTimeDelta, completedOnStart: boolean) {
-        console.log('aeyrwbz onComplete')
-
-        console.log('timeDelta', timeDelta, )
-        console.log('completedOnStart', completedOnStart)
+    function updateTimer(timeDelta:  CountdownTimeDelta, completedOnStart: boolean) {
 
         // debugger
         let currentTimerIdx = timers.findIndex(el => el.id === currentTimer?.id)
@@ -164,7 +100,7 @@ const CurrentTask = React.memo(() => {
             let nextTask = tasksList?.find((el, idx) => idx === currentTaskIdx + 1) as ITask
 
             if (nextTask) {
-                countdownRef?.current?.stop()
+
                 setCurrentTask(nextTask)
                 setTasksList(tasks)
             } else {
@@ -173,43 +109,12 @@ const CurrentTask = React.memo(() => {
             return
         }
 
-        setCurrentTimer({...nextTimer, value: Number(nextTimer.value) * 1000, date_start: Date.now()})
+        // setCurrentTimer({...nextTimer, value: Number(nextTimer.value) * 1000, date_start: Date.now()})
         setTasksList(tasks)
-
-
-
-        let tim = 0
-        window.clearTimeout(tim)
-        tim = window.setTimeout(() => {
-            // let tim2 = 0
-            // tim2 = window.setTimeout(() => {
-            //
-            //     // setTasksList(tasks)
-            //
-            //     window.clearTimeout(tim2)
-            //
-            // }, 0)
-
-
-            // setCurrentTimer({...nextTimer, date_start: Date.now()})
-            console.log('текущий таймер ', currentTimer)
-
-            countdownRef?.current?.start()
-
-            window.clearTimeout(tim)
-
-        }, 1000)
     }
 
-    function show(e: CountdownTimeDelta) {
-        console.log(e)
 
-        // setIsModalOpen(true)
-    }
 
-    function handleStop(timeDelta:  CountdownTimeDelta) {
-        console.log(timeDelta)
-    }
 
     return (
         <Box sx={{
@@ -220,8 +125,6 @@ const CurrentTask = React.memo(() => {
             maxHeight: '100%',
             borderRadius: 2,
         }}>
-
-            <div>{currentTimer?.value}</div>
 
             {tasksList ? <>
                     <Accordion>
@@ -248,7 +151,10 @@ const CurrentTask = React.memo(() => {
                         {/*    </IconButton>*/}
                         {/*</Box>*/}
 
-                        {currentTimer ? <Timer /> : 'Добавьте задачу'}
+                        <Timer timer={currentTask?.timers[0]}
+                                               updateTimer={updateTimer}
+
+                        />
                     </Box>
                 </> :
                 <>
@@ -257,7 +163,7 @@ const CurrentTask = React.memo(() => {
             }
         </Box>
     );
-});
+};
 
 export default CurrentTask;
 
