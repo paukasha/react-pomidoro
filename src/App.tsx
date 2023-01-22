@@ -45,10 +45,10 @@ function App() {
                                 <Header/>
                                 <Container maxWidth='xl' sx={{flexGrow: 1}}>
                                     <Routes>
-                                        <Route path="/" element={<Main/>}/>
-                                        <Route path="/settings" element={<Settings/>}/>
-                                        <Route path="/statistics" element={<Statistics/>}/>
-                                        <Route path="/instructions" element={<Instruction/>}/>
+                                        <Route path="/react-pomidoro/" element={<Main/>}/>
+                                        <Route path="/react-pomidoro/settings" element={<Settings/>}/>
+                                        <Route path="/react-pomidoro/statistics" element={<Statistics/>}/>
+                                        <Route path="/react-pomidoro/instructions" element={<Instruction/>}/>
                                     </Routes>
                                 </Container>
                                 <Footer/>
