@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-pomidoro/static/static/css/main.a6680cf0.css",
-    "main.js": "/react-pomidoro/static/static/js/main.0373763f.js",
-    "static/js/787.4fef17e6.chunk.js": "/react-pomidoro/static/static/js/787.4fef17e6.chunk.js",
-    "static/media/sound2.mp3": "/react-pomidoro/static/static/media/sound2.ca4dd82d7428ad708a78.mp3",
-    "index.html": "/react-pomidoro/static/index.html",
-    "main.a6680cf0.css.map": "/react-pomidoro/static/static/css/main.a6680cf0.css.map",
-    "main.0373763f.js.map": "/react-pomidoro/static/static/js/main.0373763f.js.map",
-    "787.4fef17e6.chunk.js.map": "/react-pomidoro/static/static/js/787.4fef17e6.chunk.js.map"
+    "main.css": "/react-pomidoro/static/css/main.a6680cf0.css",
+    "main.js": "/react-pomidoro/static/js/main.63b818a4.js",
+    "static/js/787.4fef17e6.chunk.js": "/react-pomidoro/static/js/787.4fef17e6.chunk.js",
+    "static/media/sound2.mp3": "/react-pomidoro/static/media/sound2.ca4dd82d7428ad708a78.mp3",
+    "index.html": "/react-pomidoro/index.html",
+    "main.a6680cf0.css.map": "/react-pomidoro/static/css/main.a6680cf0.css.map",
+    "main.63b818a4.js.map": "/react-pomidoro/static/js/main.63b818a4.js.map",
+    "787.4fef17e6.chunk.js.map": "/react-pomidoro/static/js/787.4fef17e6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a6680cf0.css",
-    "static/js/main.0373763f.js"
+    "static/js/main.63b818a4.js"
   ]
 }
