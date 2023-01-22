@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.a6680cf0.css",
-    "main.js": "/static/js/main.fb8a2934.js",
-    "static/js/787.4fef17e6.chunk.js": "/static/js/787.4fef17e6.chunk.js",
-    "static/media/sound2.mp3": "/static/media/sound2.ca4dd82d7428ad708a78.mp3",
-    "index.html": "/index.html",
-    "main.a6680cf0.css.map": "/static/css/main.a6680cf0.css.map",
-    "main.fb8a2934.js.map": "/static/js/main.fb8a2934.js.map",
-    "787.4fef17e6.chunk.js.map": "/static/js/787.4fef17e6.chunk.js.map"
+    "main.css": "/paukasha/react-pomidoro/static/css/main.a6680cf0.css",
+    "main.js": "/paukasha/react-pomidoro/static/js/main.cf35781a.js",
+    "static/js/787.4fef17e6.chunk.js": "/paukasha/react-pomidoro/static/js/787.4fef17e6.chunk.js",
+    "static/media/sound2.mp3": "/paukasha/react-pomidoro/static/media/sound2.ca4dd82d7428ad708a78.mp3",
+    "index.html": "/paukasha/react-pomidoro/index.html",
+    "main.a6680cf0.css.map": "/paukasha/react-pomidoro/static/css/main.a6680cf0.css.map",
+    "main.cf35781a.js.map": "/paukasha/react-pomidoro/static/js/main.cf35781a.js.map",
+    "787.4fef17e6.chunk.js.map": "/paukasha/react-pomidoro/static/js/787.4fef17e6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a6680cf0.css",
-    "static/js/main.fb8a2934.js"
+    "static/js/main.cf35781a.js"
   ]
 }
