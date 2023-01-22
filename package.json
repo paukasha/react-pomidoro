@@ -2,7 +2,7 @@
   "name": "material-ui-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://paukasha.github.io/react-pomidoro/",
+  "homepage": "https://paukasha.github.io/react-pomidoro/static",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
