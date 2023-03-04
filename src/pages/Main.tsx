@@ -1,22 +1,15 @@
-import React, {useState} from 'react';
-import Grid from '@mui/material/Unstable_Grid2';
-import Item from '@mui/material/Unstable_Grid2';
-import {Container, Typography,} from "@mui/material";
-import TaskList from "./TaskList";
+import { Container, Typography } from "@mui/material";
+import { default as Grid, default as Item } from '@mui/material/Unstable_Grid2';
+import { useContext, useState } from 'react';
 import CurrentTask from "../components/CurrentTask/CurrentTask";
-import {ISetting, ITask} from "../interfaces";
-import useLocalStorageState from 'use-local-storage-state'
-import Modal from "../components/Modal";
 import Form from "../components/Form";
-import {settingsDefaultValue} from "../utils/dicts";
+import Modal from "../components/Modal";
+import TaskList from "../components/TasksList/TaskList";
+import { TasksContext } from "../context/context";
 
 const Main = () => {
-    const [tasksList, setTasksList] = useLocalStorageState<ITask[]>('tasksList', {defaultValue: []}),
-        tasksListValue = {tasksList, setTasksList},
-        [settings, setSettings] = useLocalStorageState<ISetting[]>('settings', {defaultValue: settingsDefaultValue}),
-        settingsValue = {settings, setSettings},
-        [isModalOpen, setIsModalOpen] = useState(false),
-        modalValue = {isModalOpen, setIsModalOpen};
+      const {tasksList, setTasksList} = useContext(TasksContext),
+        [isModalOpen, setIsModalOpen] = useState(false);
 
     return (<Container maxWidth='xl'
                        sx={{mt: 5,}}>

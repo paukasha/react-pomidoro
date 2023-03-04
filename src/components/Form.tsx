@@ -4,6 +4,7 @@ import {ISetting, ITask} from "../interfaces";
 import {generateRandomString} from "../utils/generateRandom";
 import useLocalStorageState from "use-local-storage-state";
 import {TasksContext} from "../context/context";
+import dayjs from "dayjs";
 
 const Form = () => {
     const nameTaskRef = useRef<HTMLInputElement>(null),
@@ -45,6 +46,7 @@ const Form = () => {
             addTask()
         }
     }
+
     let [settings, setSettings] = useLocalStorageState<ISetting[]>('settings')
 
     function addTask() {
@@ -68,7 +70,7 @@ const Form = () => {
             for (let i = 0; i < num; i++) {
                 let object = {
                     id: generateRandomString(),
-                    creation_date: new Date(),
+                    delay: +tomatoDuration?.value! * 1000,
                     ...tomatoDuration
                 }
 
@@ -77,12 +79,14 @@ const Form = () => {
                     if ((i + 1) % (8) === 0) {
                         object = {
                             ...object,
+                            delay: +bigBreak?.value! * 1000,
                             ...bigBreak
 
                         }
                     } else {
                         object = {
                             ...object,
+                            delay: +smallBreak?.value! * 1000,
                             ...smallBreak
                         }
 
@@ -95,6 +99,7 @@ const Form = () => {
         setTasksList([...tasksList, {
             ...task,
             completed: false,
+            creationDate: dayjs(),
             id: generateRandomString(),
             tomatos: tomatosSetting?.value,
             timers: [...timers]

@@ -14,7 +14,6 @@ import {SettingsContext} from "../context/context";
 const Settings = () => {
     const {settings, setSettings} = useContext(SettingsContext);
     const [isSnackBarOpen, setSnackBarOpen] = React.useState(false);
-    const [timer, setTimer] = useState<number | null>(null);
 
     const handleChange = (value: number | boolean, sysName: string | boolean) => {
         if (!value && typeof value !== 'boolean') {
@@ -49,7 +48,7 @@ const Settings = () => {
                 setSnackBarOpen(true)
             }, 1500)
 
-            setTimer(newTimer)
+
             return
         }
         setSnackBarOpen(true)
@@ -86,7 +85,7 @@ const Settings = () => {
                                 <FormControlLabel control={<Checkbox checked={el.value}
                                                                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.checked, el.sysName)}
                                                                      size="medium"/>}
-                                                  label={el.text}/>
+                                                                     label={el.text}/>
                             </FormGroup>
                         )
                     }

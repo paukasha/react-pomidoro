@@ -1,12 +1,11 @@
-
-
 export interface ITask {
   id?: string,
-  name: string,
+  name?: string,
   descr?: string,
   tomatos?: any,
-  timers: ITimer[],
-  completed?: boolean
+  timers?: ITimer[],
+  completed?: boolean,
+  [key: string]: any
 }
 
 export interface ITimer   {
@@ -15,8 +14,6 @@ export interface ITimer   {
   date_start?: string | number,
   [key: string]: any
 }
-
-
 
 export interface ISetting {
   sysName: string,

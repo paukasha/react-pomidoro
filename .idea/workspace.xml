@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5585e905-07eb-4ca3-bcdc-ceaeadf62c0b" name="Changes" comment="промежуточный">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentTask/CurrentTask.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Timer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Timer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/context.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/context.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Settings.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +92,7 @@
       <workItem from="1672639728982" duration="72378000" />
       <workItem from="1672970912425" duration="69978000" />
       <workItem from="1673673526893" duration="45227000" />
+      <workItem from="1674726483407" duration="7456000" />
     </task>
     <task id="LOCAL-00001" summary="промежуточный">
       <created>1672641051160</created>
