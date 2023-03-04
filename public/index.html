@@ -20,7 +20,7 @@
     <style>
       .task {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr repeat(2, min-content);
         column-gap: 10px;
         align-items: center;
         width: 100%;
@@ -28,6 +28,13 @@
 
       .task > button {
         justify-self: end;
+      }
+
+      .tasks__list-header {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        margin-bottom: 20px;
       }
     </style>
   </head>

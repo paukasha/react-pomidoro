@@ -18,6 +18,7 @@ import { Edit } from "@mui/icons-material";
 import { ITask } from "../../../interfaces";
 import React, { useContext, useState } from "react";
 import { TasksContext } from "../../../context/context";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export const Task = (props: ITask) => {
   let { task } = props;
@@ -52,6 +53,12 @@ export const Task = (props: ITask) => {
     closeModal();
   };
 
+  const deleteTask = () => {
+    let tasks = tasksList.filter(({ id }) => id !== task.id);
+    setTasksList(tasks);
+    closeModal();
+  };
+
   return (
     <Accordion key={task.id} sx={{ width: "100%" }}>
       <AccordionSummary
@@ -69,6 +76,9 @@ export const Task = (props: ITask) => {
           </Typography>
           <IconButton size="large" onClick={editTask}>
             <Edit />
+          </IconButton>
+          <IconButton aria-label="delete" onClick={deleteTask}>
+            <DeleteIcon />
           </IconButton>
         </div>
       </AccordionSummary>
